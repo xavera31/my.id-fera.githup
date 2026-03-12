@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fera Febrianti — Cosmic Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+
+<style>
+:root{
+--bg:#020611;
+--glass:rgba(255,255,255,0.08);
+--text:#e8f2ff;
+--accent:#7fb3ff;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:radial-gradient(circle at top,#0b1a3a,#020611 70%);
+color:var(--text);
+overflow-x:hidden;
+cursor:none;
+}
+
+#space{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-2;
+}
+
+#spaceship{
+position:fixed;
+width:32px;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:50;
+filter:drop-shadow(0 0 8px #7fb3ff);
+}
+
+.nav{
+position:fixed;
+top:24px;
+left:50%;
+transform:translateX(-50%);
+background:var(--glass);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.18);
+border-radius:40px;
+padding:12px 28px;
+display:flex;
+gap:26px;
+z-index:10;
+}
+
+.nav button{
+background:none;
+border:none;
+color:#d5e6ff;
+font-size:14px;
+cursor:pointer;
+}
+
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:60px 20px;
+}
+
+.profile img{
+width:140px;
+height:140px;
+border-radius:50%;
+border:3px solid rgba(255,255,255,0.35);
+}
+
+.name{font-size:32px;font-weight:600;margin-top:12px}
+.verify{color:var(--accent)}
+.role{opacity:.85;margin-top:6px}
+
+.card{
+background:var(--glass);
+backdrop-filter:blur(18px);
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.15);
+padding:28px;
+max-width:650px;
+margin-top:24px;
+line-height:1.6;
+}
+
+.skill{
+display:inline-block;
+background:rgba(255,255,255,0.08);
+padding:8px 14px;
+border-radius:20px;
+margin:6px;
+font-size:13px;
+}
+
+.waBubble{
+position:fixed;
+bottom:26px;
+right:26px;
+display:flex;
+align-items:center;
+gap:10px;
+background:#25D366;
+color:white;
+padding:14px 18px;
+border-radius:40px;
+text-decoration:none;
+font-size:14px;
+box-shadow:0 12px 30px rgba(0,0,0,.45);
+z-index:20;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="space"></canvas>
+<img id="spaceship" src="https://cdn-icons-png.flaticon.com/512/3212/3212608.png" />
+
+<div class="nav">
+<button onclick="go('about')">About</button>
+<button onclick="go('story')">Story</button>
+<button onclick="go('expertise')">Expertise</button>
+<button onclick="go('contact')">Contact</button>
+</div>
+
+<a class="waBubble" href="https://wa.me/6285708143870" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="22"/>Chat Fera
+</a>
+
+<section id="about">
+<div class="profile">
+<img src="profile.jpg" alt="Fera profile"/>
+<div class="name">Fera Febrianti <span class="verify">✔</span></div>
+<div class="role">Digital Marketing • Creative Specialist</div>
+</div>
+
+<div class="card">
+Saya Fera Febrianti, S.M, seorang profesional di bidang digital marketing, desain grafis, social media specialist, dan front-end development. Saya terbiasa bekerja secara kreatif dan strategis untuk membantu mengembangkan identitas digital sebuah brand. Pekerjaan saya meliputi perencanaan konten, pembuatan desain visual, hingga membuat tampilan website yang menarik dan responsif.
+
+Saya memiliki pengalaman dalam mengelola berbagai platform digital dan fokus membantu brand berkembang melalui strategi pemasaran yang tepat, desain visual yang kuat, serta pengalaman pengguna yang baik. Saya percaya bahwa kombinasi antara kreativitas dan teknologi dapat menghasilkan solusi digital yang efektif dan bermanfaat bagi bisnis.
+
+Secara pribadi, saya adalah seseorang dengan kepribadian introvert (MBTI: INFJ). Saya senang berpikir secara mendalam, menyusun strategi, dan menciptakan ide-ide kreatif. Di luar pekerjaan, saya sangat menyukai hiking dan menjelajahi alam, karena alam memberi saya inspirasi dan ketenangan.
+
+Pada awalnya saya mungkin terlihat pendiam dan sulit didekati. Namun ketika sudah saling mengenal, saya adalah pribadi yang ceria, hangat, dan senang berbagi cerita serta ide.
+</div>
+</section>
+
+<section id="story">
+<div class="card">"Barang siapa yang takut kelaparan, niscaya dia tidak percaya akan adanya Tuhan Yang Maha Esa."</div>
+<div class="card">"Jangan takut kesusahan kalau kamu masih seorang hamba dari Tuhan yang Maha Kaya."</div>
+<div class="card">"Halo, saya adalah seseorang yang hidup dengan Borderline Personality Disorder (BPD), yaitu kondisi kesehatan mental yang berkaitan dengan emosi dan cara seseorang merespons perasaan dalam hidup sehari-hari.
+
+Bagi saya, hal ini adalah bagian dari perjalanan untuk lebih memahami diri sendiri, belajar mengelola emosi, dan terus berkembang menjadi pribadi yang lebih kuat. Saya percaya bahwa setiap orang memiliki proses hidupnya masing-masing, dan yang terpenting adalah terus belajar, bertumbuh, dan menjalani hidup dengan lebih sadar dan positif."</div>
+</section>
+
+<section id="expertise">
+<div class="card">
+<h2>Expertise</h2>
+<span class="skill">Graphic Design</span>
+<span class="skill">Social Media Specialist</span>
+<span class="skill">Digital Marketing</span>
+<span class="skill">Content Writing</span>
+<span class="skill">HTML</span>
+<span class="skill">JavaScript</span>
+</div>
+</section>
+
+<section id="contact">
+<div class="card">Untuk kolaborasi project atau kerja sama silakan hubungi melalui WhatsApp.</div>
+</section>
+
+<script>
+
+function go(id){
+ const el=document.getElementById(id)
+ if(el) el.scrollIntoView({behavior:'smooth'})
+}
+
+const canvas=document.getElementById('space')
+const scene=new THREE.Scene()
+
+const camera=new THREE.PerspectiveCamera(70,window.innerWidth/window.innerHeight,0.1,1000)
+camera.position.z=10
+
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true})
+renderer.setSize(window.innerWidth,window.innerHeight)
+
+/* STARS */
+
+const starGeo=new THREE.BufferGeometry()
+const starCount=10000
+const starPos=new Float32Array(starCount*3)
+
+for(let i=0;i<starCount*3;i++){
+ starPos[i]=(Math.random()-0.5)*900
+}
+
+starGeo.setAttribute('position',new THREE.BufferAttribute(starPos,3))
+
+const starMat=new THREE.PointsMaterial({color:0xffffff,size:0.06})
+const stars=new THREE.Points(starGeo,starMat)
+scene.add(stars)
+
+/* NEBULA */
+
+const nebulaGeo=new THREE.SphereGeometry(300,64,64)
+const nebulaMat=new THREE.MeshBasicMaterial({
+color:0x6a7dff,
+transparent:true,
+opacity:0.08,
+side:THREE.BackSide
+})
+
+const nebula=new THREE.Mesh(nebulaGeo,nebulaMat)
+scene.add(nebula)
+
+/* BLACK HOLE */
+
+const holeGeo=new THREE.SphereGeometry(2,64,64)
+const holeMat=new THREE.MeshBasicMaterial({color:0x000000})
+const blackHole=new THREE.Mesh(holeGeo,holeMat)
+blackHole.position.set(0,0,-20)
+scene.add(blackHole)
+
+/* MOON */
+
+const moonGeo=new THREE.SphereGeometry(1.3,64,64)
+const moonTexture=new THREE.TextureLoader().load('https://threejs.org/examples/textures/planets/moon_1024.jpg')
+
+const moon=new THREE.Mesh(moonGeo,new THREE.MeshStandardMaterial({map:moonTexture}))
+moon.position.set(4,1,-2)
+scene.add(moon)
+
+let dragging=false
+
+document.addEventListener('mousedown',()=>dragging=true)
+document.addEventListener('mouseup',()=>dragging=false)
+
+document.addEventListener('mousemove',e=>{
+ if(dragging){
+  moon.rotation.y+=e.movementX*0.01
+ }
+})
+
+/* SATURN */
+
+const saturnGeo=new THREE.SphereGeometry(0.9,32,32)
+const saturn=new THREE.Mesh(saturnGeo,new THREE.MeshStandardMaterial({color:0xd8c79a}))
+saturn.position.set(-7,3,-7)
+
+const ringGeo=new THREE.RingGeometry(1.2,1.9,64)
+const ringMat=new THREE.MeshBasicMaterial({color:0xcbbd9a,side:THREE.DoubleSide})
+
+const ring=new THREE.Mesh(ringGeo,ringMat)
+ring.rotation.x=Math.PI/2
+saturn.add(ring)
+
+scene.add(saturn)
+
+/* ORBIT PLANET */
+
+const planetGeo=new THREE.SphereGeometry(0.5,32,32)
+const planet=new THREE.Mesh(planetGeo,new THREE.MeshStandardMaterial({color:0x8fb6ff}))
+scene.add(planet)
+
+let orbitAngle=0
+
+/* LIGHT */
+
+const light=new THREE.PointLight(0xffffff,1.6)
+light.position.set(6,6,6)
+scene.add(light)
+
+/* METEOR */
+
+function meteor(){
+
+ const geo=new THREE.SphereGeometry(0.08,8,8)
+ const mat=new THREE.MeshBasicMaterial({color:0xffffff})
+
+ const m=new THREE.Mesh(geo,mat)
+ m.position.set(-40,20,-5)
+ scene.add(m)
+
+ let speed=0
+
+ function move(){
+
+  speed+=0.35
+
+  m.position.x+=speed
+  m.position.y-=speed
+
+  if(m.position.x>40){
+   scene.remove(m)
+   return
+  }
+
+  requestAnimationFrame(move)
+ }
+
+ move()
+}
+
+setInterval(meteor,7000)
+
+/* PARALLAX */
+
+let mouseX=0
+let mouseY=0
+
+addEventListener('mousemove',e=>{
+
+ mouseX=(e.clientX/window.innerWidth-0.5)
+ mouseY=(e.clientY/window.innerHeight-0.5)
+
+ const ship=document.getElementById('spaceship')
+ ship.style.left=e.clientX+'px'
+ ship.style.top=e.clientY+'px'
+
+})
+
+window.addEventListener('resize',()=>{
+ camera.aspect=window.innerWidth/window.innerHeight
+ camera.updateProjectionMatrix()
+ renderer.setSize(window.innerWidth,window.innerHeight)
+})
+
+function animate(){
+
+ requestAnimationFrame(animate)
+
+ stars.rotation.y+=0.00005
+ nebula.rotation.y+=0.00002
+
+ moon.rotation.y+=0.0008
+ saturn.rotation.y+=0.0004
+
+ orbitAngle+=0.002
+
+ planet.position.x=Math.cos(orbitAngle)*3
+ planet.position.z=Math.sin(orbitAngle)*3-3
+
+ camera.position.x=mouseX*0.4
+ camera.position.y=-mouseY*0.3
+
+ renderer.render(scene,camera)
+
+}
+
+animate()
+
+</script>
+
+</body>
+</html>
